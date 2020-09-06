@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.1.1...v1.2.0) (2020-09-06)
+
+
+### Features
+
+* **login:** [17] add user login (add forgot files) ([78bfa64](https://github.com/brucegroverlee/wallet_backend/commit/78bfa64c971688419cf704331f0f512febffb63f))
+* **login:** [17] user login ([0e1a4f5](https://github.com/brucegroverlee/wallet_backend/commit/0e1a4f55e5f441ced4e551156e46aeecd2a71102))
+
 ### [1.1.1](///compare/v1.1.0...v1.1.1) (2020-09-06)
 
 
