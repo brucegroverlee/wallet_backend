@@ -1,0 +1,14 @@
+# Software Requirements Specification (SRS)
+- [x] registro y login.
+- [x] el usuario puede tener mas de una cuenta.
+- [x] el usuario debe registrar movimiento/transaccion con monto, descripcion y cuenta de origen
+- [x] si la transaccion realizada es una transferencia entre cuentas debe especificar las cuentas de origen y destino respectivamente
+- [x] las transacciones estan agrupadas por categorias
+- [x] las categorias estan agrupadas por grupo de categorias
+- [x] existe pagos recurrentes
+- [x] los pagos recurrentes deben mostrarse si ya fueron pagados en el mes correspondiente
+- [x] las cuentas deben de mantener la informacion de saldo disponible
+- [x] tanto las cuentas como las transacciones y los pagos recurrentes pueden ser de distintas monedas
+- [x] si la transaccion es un pago recurrente debe de especificar
+- [x] si la transaccion es para cambio de divisa entre cuentas debe de especificar las divisas y los montos del origen y destino asi como el tipo de cambio
+- [x] las categorias pueden tener un presupuesto mensual

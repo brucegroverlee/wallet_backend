@@ -1,0 +1,70 @@
+{
+  "name": "wallet_backend",
+  "version": "1.0.0",
+  "description": "## Tech stack - Deno - MySQL",
+  "main": "jest.config.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "tslint": "tslint -c tslint.json 'src/**/*.ts'",
+    "commit": "git-cz",
+    "release": "standard-version",
+    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit",
+    "test:local": "cross-env NODE_ENV=test.local jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit",
+    "test:debug": "cross-env NODE_ENV=test.local node --inspect-brk --require ts-node/register node_modules/.bin/jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit --no-cache",
+    "tsc": "tsc",
+    "dev:debug": "cross-env NODE_ENV=development node --inspect-brk --require ts-node/register src/index.ts",
+    "dev": "tslint -c tslint.json 'src/**/*.ts' && cross-env NODE_ENV=development nodemon 'src/index.ts' --exec 'ts-node' src/index.ts -e ts",
+    "build": "tslint -c tslint.json 'src/**/*.ts' && tsc",
+    "start": "cross-env NODE_ENV=production node ./build/src/index.js",
+    "deploy-dispatch": "gcloud app deploy dispatch.yaml",
+    "deploy": "gcloud app deploy"
+  },
+  "author": "Bruce Grover Lee",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.3",
+    "@types/helmet": "0.0.45",
+    "@types/jest": "^25.1.4",
+    "@types/jsonwebtoken": "^8.3.8",
+    "@types/morgan": "^1.9.0",
+    "@types/node": "^13.9.1",
+    "@types/uuid": "^8.0.1",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.1.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "standard-version": "^7.1.0",
+    "ts-jest": "^25.2.1",
+    "ts-node": "^8.6.2",
+    "tslint": "^6.1.0"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.2",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.3",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "moment": "^2.26.0",
+    "morgan": "^1.9.1",
+    "mysql2": "^2.1.0",
+    "p-pipe": "^3.0.0",
+    "path": "^0.12.7",
+    "sequelize": "^6.3.4",
+    "typescript": "^3.8.3",
+    "uuid": "^8.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

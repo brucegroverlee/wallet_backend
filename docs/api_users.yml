@@ -1,0 +1,149 @@
+openapi: 3.0.0
+info:
+  description: Wallet APIv1
+  version: "1.0.0-oas3"
+  title: Wallet APIv1 Reference
+  contact:
+    email: brucegrover.lee@gmail.com
+tags:
+  - name: Public
+    description: Public access
+  - name: Private
+    description: Bearer Authentication required
+paths:
+  /login:
+    post:
+      tags: 
+        - Public
+      summary: Get the auth
+      operationId: login
+      description: Get the auth token.
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '202':
+          description: Accepted. Return the token auth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+                  
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized.
+
+  /me:
+    post:
+      tags: 
+        - Private
+      summary: Get the user information
+      operationId: me
+      description: Get the user information.
+      security:
+        - bearerAuth: []
+      responses:
+        '202':
+          description: Accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+                  
+        '401':
+          description:  Unauthorized.
+
+  /signup:
+    post:
+      tags: 
+        - Public
+      summary: Create a new user
+      operationId: signup
+      description: Create a new user.
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequest'
+      responses:
+        '201':
+          description: Created. Return the token auth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+                  
+        '406':
+          description: Not Acceptable. There is an attribute invalid.
+        '409':
+          description: Conflict. There is another user with the email.
+    
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+      
+  schemas:
+    LoginRequest:
+      properties:
+        email:
+          type: string
+          example: bruce@gmail.com
+        password:
+          type: string
+          example: 12345678
+  
+    SignupRequest:
+      properties:
+        email:
+          type: string
+          example: bruce@gmail.com
+        password:
+          type: string
+          example: 12345678
+        name:
+          type: string
+          example: bruce
+
+    SessionResponse:
+      properties:
+        token:
+          type: string
+          description: It is a JWT.
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+
+    MeResponse:
+      properties:
+        token:
+          type: string
+          example: bJnb8fWsdWAkh2978kdGbJnb8fWsdWAkh2978kdGbJnb8fWsdWAkh2978kdG 
+        user:
+          type: object
+          $ref: '#/components/schemas/User' 
+
+    User:
+      properties:
+        object:
+          type: string
+          example: qullquero 
+        id:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        email:
+          type: string
+          example: bruce@gmail.com
+        name:
+          type: string
+          example: bruce
+
+servers:
+  - url: 'http://localhost:3000'
