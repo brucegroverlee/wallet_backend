@@ -1,9 +1,9 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import signup from "../../../application/signup";
 
-export default function signupController(request: any, response: Response) {
+export default function signupController(request: Request, response: Response) {
   signup(request.body)
-  .then((token: any) => {
+  .then((token: string) => {
     if (token) {
       response.status(201);
       response.send({

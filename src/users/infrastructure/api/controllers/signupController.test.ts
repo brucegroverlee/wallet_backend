@@ -36,7 +36,6 @@ describe("Signup test suit", () => {
         email: "signup@mail.com",
         password: "password",
       });
-      debugger
       expect(res.status).toEqual(201);
       expect(typeof res.body.token).toEqual("string");
       done();
@@ -49,7 +48,6 @@ describe("Signup test suit", () => {
         email: "signup@mail.com",
         password: "password",
       });
-      debugger
       expect(res.status).toEqual(409);
       done();
     });

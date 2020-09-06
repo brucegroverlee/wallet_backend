@@ -1,7 +1,7 @@
 {
   "name": "wallet_backend",
   "version": "1.2.0",
-  "description": "## Tech stack - Deno - MySQL",
+  "description": "",
   "main": "jest.config.js",
   "directories": {
     "doc": "docs"
@@ -10,8 +10,8 @@
     "tslint": "tslint -c tslint.json 'src/**/*.ts'",
     "commit": "git-cz",
     "release": "standard-version",
-    "test": "cross-env NODE_ENV=test jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit",
-    "test:local": "cross-env NODE_ENV=test.local jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit",
+    "test": "tslint -c tslint.json 'src/**/*.ts' && cross-env NODE_ENV=test jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit",
+    "test:local": "tslint -c tslint.json 'src/**/*.ts' && cross-env NODE_ENV=test.local jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit",
     "test:debug": "cross-env NODE_ENV=test.local node --inspect-brk --require ts-node/register node_modules/.bin/jest --coverage --testTimeout=1200000 --detectOpenHandles --forceExit --no-cache",
     "tsc": "tsc",
     "dev:debug": "cross-env NODE_ENV=development node --inspect-brk --require ts-node/register src/index.ts",

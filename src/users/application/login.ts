@@ -1,18 +1,18 @@
 import UsersModel from "../domain/usersModel";
 
-interface PayloadLoginInterface {
+interface ILoginPayload {
   email: string;
   password: string;
 }
 
 /**
- * 
+ *
  * @param {object} payload
  * @param {string} payload.email
  * @param {string} payload.password
  * @returns {string | null} returns the token if the auth was correct. Otherwise, retuns null.
  */
-async function login(payload: PayloadLoginInterface): Promise<string|null> {
+async function login(payload: ILoginPayload): Promise<string|null> {
   try {
     const { email, password, } = payload;
     const user = await UsersModel.findOne({ where: {

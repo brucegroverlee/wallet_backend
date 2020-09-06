@@ -14,9 +14,9 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 class UsersModel extends UsersRepository {
   public name: string;
   public email: string;
-  private password: string;
+  public password: string;
 
-  static async getHashedPassword(password: string) {
+  static async getHashedPassword(password: string): Promise<string> {
     try {
       const saltRounds = 10;
       const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -40,7 +40,7 @@ class UsersModel extends UsersRepository {
    * @param {string} password
    * @returns {boolean} returns true if the password is correct. Otherwise, returns false.
    */
-  async verifyPassword(password: string) {
+  async verifyPassword(password: string): Promise<boolean> {
     try {
       const isValid = await bcrypt.compare(password, this.password);
       if (isValid) {
@@ -56,7 +56,7 @@ class UsersModel extends UsersRepository {
   /**
    * @description create a JWT access token
    */
-  createToken() {
+  createToken(): string {
     const token = jwt.sign({
       userId: this.id,
     }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });

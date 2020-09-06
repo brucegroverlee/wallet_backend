@@ -1,7 +1,7 @@
-import { Response } from "express";
+import { Request, Response } from "express";
 import login from "../../../application/login";
 
-export default function loginController(request: any, response: Response) {
+export default function loginController(request: Request, response: Response) {
   const { email, password } = request.body;
   login({ email, password })
   .then((token: string|null) => {

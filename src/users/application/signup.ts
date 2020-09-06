@@ -1,8 +1,15 @@
 import pipe from "p-pipe";
 import UsersModel from "../domain/usersModel";
 
-function whenTheUserDoesntExist(...funcs: ((payload: any) => Promise<any>)[]) {
-  return async (payload: any) => {
+interface ISignupPayload {
+  name: string;
+  email: string;
+  password: string;
+  user?: UsersModel;
+}
+
+function whenTheUserDoesntExist(...funcs: ((payload: ISignupPayload) => Promise<ISignupPayload|string|null>)[]) {
+  return async (payload: ISignupPayload) => {
     try {
       const user = await UsersModel.findOne({ where: { email: payload.email }});
       if (user) {
@@ -19,7 +26,7 @@ function whenTheUserDoesntExist(...funcs: ((payload: any) => Promise<any>)[]) {
   };
 }
 
-async function getHashedPassword(payload: any) {
+async function getHashedPassword(payload: ISignupPayload): Promise<ISignupPayload> {
   try {
     const password = await UsersModel.getHashedPassword(payload.password);
     return {
@@ -31,7 +38,7 @@ async function getHashedPassword(payload: any) {
   }
 }
 
-async function saveUser(payload: any) {
+async function saveUser(payload: ISignupPayload): Promise<ISignupPayload> {
   try {
     const user = await UsersModel.create({
       name: payload.name,
@@ -52,7 +59,7 @@ async function saveUser(payload: any) {
  * @param {object} payload
  * @returns {Promise<string>} if it is valid, returns the token. Otherwise, retuns null.
  */
-async function createToken(payload: any) {
+async function createToken(payload: ISignupPayload): Promise<string|null> {
   try {
     const { user, } = payload;
     if (user) {
@@ -74,7 +81,7 @@ async function createToken(payload: any) {
  * @param {string} payload.password
  * @returns {Promise<string | null>} returns the token if the auth was correct. Otherwise, retuns null.
  */
-async function signup(payload: any) {
+async function signup(payload: ISignupPayload): Promise<string|null> {
   try {
     const result = await pipe(
       whenTheUserDoesntExist(
@@ -83,7 +90,7 @@ async function signup(payload: any) {
         createToken,
       ),
     )(payload);
-    return result;
+    return result as string;
   } catch (error) {
     throw error;
   }
