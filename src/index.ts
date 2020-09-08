@@ -29,6 +29,9 @@ if (process.env.NODE_ENV !== "test" && process.env.NODE_ENV !== "test.local") {
 import usersRouter from "./users/infrastructure/api/router";
 app.use(usersRouter);
 
+import accountsRouter from "./accounts/infrastructure/api/router";
+app.use(accountsRouter);
+
 app.use((request, response) => {
   response.status(404);
   response.end();

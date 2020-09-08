@@ -8,28 +8,23 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 
 import server from "../../../../index";
-import UsersModel from "../../../domain/usersModel";
+import usersRepository from "../../repository/usersRepository";
 import signup from "../../../application/signup";
 
 chai.use(chaiHttp);
 
 describe("Me test suit", () => {
   let requester: ChaiHttp.Agent;
-  let user: UsersModel;
   let token: string;
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    user = await UsersModel.findOne({ where: { name: "[users::me] name" } });
-    if (user) {
-      token = user.createToken();
-    } else {
-      token = await signup({
-        name: "[users::me] name",
-        email: "me@mail.com",
-        password: "password",
-      });
-    }
+    await usersRepository.delete({ name: "[users::me] name", });
+    token = await signup({
+      name: "[users::me] name",
+      email: "me@email.com",
+      password: "password",
+    });
     done();
   });
 

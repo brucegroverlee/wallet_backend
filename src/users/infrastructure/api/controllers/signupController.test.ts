@@ -17,10 +17,7 @@ describe("Signup test suit", () => {
 
   beforeAll( async (done) => {
     requester = chai.request(server).keepOpen();
-    const user = await usersRepository.findOne({ where: { name: "[users::signup] name" } });
-    if (user) {
-      await usersRepository.delete({ name: "[users::signup] name" });
-    }
+    await usersRepository.delete({ name: "[users::signup] name" });
     done();
   });
 
@@ -33,7 +30,7 @@ describe("Signup test suit", () => {
       const res = await requester
       .post("/signup").send({
         name: "[users::signup] name",
-        email: "signup@mail.com",
+        email: "signup@email.com",
         password: "password",
       });
       expect(res.status).toEqual(201);
@@ -45,7 +42,7 @@ describe("Signup test suit", () => {
       const res = await requester
       .post("/signup").send({
         name: "[users::signup] name",
-        email: "signup@mail.com",
+        email: "signup@email.com",
         password: "password",
       });
       expect(res.status).toEqual(409);
@@ -56,7 +53,7 @@ describe("Signup test suit", () => {
       const res = await requester
       .post("/signup").send({
         name: "[users::signup] name",
-        email: "signup@mail.com",
+        email: "signup@email.com",
       });
       expect(res.status).toEqual(406);
       done();

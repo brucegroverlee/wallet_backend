@@ -1,9 +1,9 @@
-import Sequelize from "sequelize";
+import { Model } from "sequelize";
 
-class RepositoryModel extends Sequelize.Model {
+class RepositoryModel extends Model {
   public id: string;
 
-  static findById(id: string) {
+  static findById(id: string){
     try {
       return this.findOne({
         where: {

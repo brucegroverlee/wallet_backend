@@ -134,7 +134,7 @@ components:
       properties:
         object:
           type: string
-          example: qullquero 
+          example: user 
         id:
           type: string
           example: bJnb8fWsdWAkh2978kdG

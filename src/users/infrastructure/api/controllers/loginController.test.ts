@@ -18,14 +18,12 @@ describe("Login test suit", () => {
 
   beforeAll( async (done) => {
     requester = chai.request(server).keepOpen();
-    const user = await usersRepository.findOne({ where: { name: "[users::login] name" } });
-    if (!user) {
-      await signup({
-        name: "[users::login] name",
-        email: "login@mail.com",
-        password: "password",
-      });
-    }
+    await usersRepository.delete({ name: "[users::login] name", });
+    await signup({
+      name: "[users::login] name",
+      email: "login@email.com",
+      password: "password",
+    });
     done();
   });
 
@@ -37,7 +35,7 @@ describe("Login test suit", () => {
     test("It should returns the token session.", async (done) => {
       const res = await requester
       .post("/login").send({
-        email: "login@mail.com",
+        email: "login@email.com",
         password: "password",
       });
       expect(res.status).toEqual(202);
@@ -48,7 +46,7 @@ describe("Login test suit", () => {
     test("It shouldn\"t returns the token session because the password is incorrect.", async (done) => {
       const res = await requester
       .post("/login").send({
-        email: "login@mail.com",
+        email: "login@email.com",
         password: "12345679",
       });
       expect(res.status).toEqual(401);
@@ -58,7 +56,7 @@ describe("Login test suit", () => {
     test("It shouldn\"t returns the token session. there isn\"t password attribute.", async (done) => {
       const res = await requester
       .post("/login").send({
-        email: "login@mail.com",
+        email: "login@email.com",
       });
       expect(res.status).toEqual(406);
       done();
