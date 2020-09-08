@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.3.0...v1.4.0) (2020-09-08)
+
+
+### Features
+
+* **accounts:** [20] add CRUD accounts ([d4d2dad](https://github.com/brucegroverlee/wallet_backend/commit/d4d2dad924d5e79f4f333799acf599893ed6c86c))
+
 ## [1.3.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.2.0...v1.3.0) (2020-09-06)
 
 
