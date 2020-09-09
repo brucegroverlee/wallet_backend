@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.4.0...v1.5.0) (2020-09-09)
+
+
+### Features
+
+* **categorygroups:** [21] add CRUD categoryGroups ([39bf1dc](https://github.com/brucegroverlee/wallet_backend/commit/39bf1dc6d37910ed330891d674401b8a40f361d1))
+
 ## [1.4.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.3.0...v1.4.0) (2020-09-08)
 
 
