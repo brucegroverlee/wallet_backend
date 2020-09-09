@@ -1,13 +1,11 @@
 # Wallet Backend
 
 ## Tech stack
+- Node.js
+- Express
 - TypeScript
 - MySQL / Sequelize
-
-## Kanban board
-```
-https://app.clubhouse.io/playground-wallet/dashboard
-```
+- Jest
 
 ## References
 - [Clean Architecture Guide](https://proandroiddev.com/clean-architecture-data-flow-dependency-rule-615ffdd79e29)

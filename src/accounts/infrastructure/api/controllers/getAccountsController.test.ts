@@ -7,7 +7,7 @@ dotenv.config({
 import chai from "chai";
 import chaiHttp from "chai-http";
 import server from "../../../../index";
-import accountsRepository from "../../repository/accountsRepository";
+import AccountsRepository from "../../repository/accountsRepository";
 import usersRepository from "../../../../users/infrastructure/repository/usersRepository";
 import UsersModel from "../../../../users/domain/usersModel";
 import signup from "../../../../users/application/signup";
@@ -21,8 +21,8 @@ describe("Get a filtered list of Accounts test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await accountsRepository.delete({ name: "[accounts::getList] name 1", });
-    await accountsRepository.delete({ name: "[accounts::getList] name 2", });
+    await AccountsRepository.delete({ name: "[accounts::getList] name 1", });
+    await AccountsRepository.delete({ name: "[accounts::getList] name 2", });
     await usersRepository.delete({ name: "[accounts::getList] name", });
     token = await signup({
       name: "[accounts::getList] name",
@@ -30,13 +30,13 @@ describe("Get a filtered list of Accounts test suit", () => {
       password: "password",
     });
     user = await UsersModel.findOne({ where : { name: "[accounts::getList] name" }, });
-    await accountsRepository.create({
+    await AccountsRepository.create({
       userId: user.id,
       name: "[accounts::getList] name 1",
       total: 0.0,
       currency: "usd",
     });
-    await accountsRepository.create({
+    await AccountsRepository.create({
       userId: user.id,
       name: "[accounts::getList] name 2",
       total: 0.0,

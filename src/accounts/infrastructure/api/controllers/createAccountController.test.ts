@@ -7,7 +7,7 @@ dotenv.config({
 import chai from "chai";
 import chaiHttp from "chai-http";
 import server from "../../../../index";
-import accountsRepository from "../../repository/accountsRepository";
+import AccountsRepository from "../../repository/accountsRepository";
 import usersRepository from "../../../../users/infrastructure/repository/usersRepository";
 import signup from "../../../../users/application/signup";
 
@@ -19,7 +19,7 @@ describe("Create Account test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await accountsRepository.delete({ name: "[accounts::create] name", });
+    await AccountsRepository.delete({ name: "[accounts::create] name", });
     await usersRepository.delete({ name: "[accounts::create] name", });
     token = await signup({
       name: "[accounts::create] name",
@@ -34,7 +34,7 @@ describe("Create Account test suit", () => {
   });
 
   describe("POST /accounts", () => {
-    test("It should create a Account.", async (done) => {
+    test("It should create an account.", async (done) => {
       const res = await requester
       .post("/accounts")
       .set("Authorization", `Bearer ${token}`)
@@ -48,7 +48,7 @@ describe("Create Account test suit", () => {
       done();
     });
 
-    test("It shouldn\"t create a purchase. There is not a token.", async (done) => {
+    test("It shouldn\"t create an account. There is not a token.", async (done) => {
       const res = await requester
       .post("/accounts")
       .set("Authorization", `Bearer`)
@@ -61,7 +61,7 @@ describe("Create Account test suit", () => {
       done();
     });
 
-    test("It shouldn\"t create a purchase. There is not a header.", async (done) => {
+    test("It shouldn\"t create an account. There is not a header.", async (done) => {
       const res = await requester
       .post("/accounts")
       .send({
@@ -73,7 +73,7 @@ describe("Create Account test suit", () => {
       done();
     });
 
-    test("It shouldn\"t create a Account. There is not an attribute.", async (done) => {
+    test("It shouldn\"t create an account. There is not an attribute.", async (done) => {
       const res = await requester
       .post("/accounts")
       .set("Authorization", `Bearer ${token}`)

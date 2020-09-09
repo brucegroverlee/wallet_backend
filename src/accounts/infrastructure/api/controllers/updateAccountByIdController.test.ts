@@ -7,7 +7,7 @@ dotenv.config({
 import chai from "chai";
 import chaiHttp from "chai-http";
 import server from "../../../../index";
-import accountsRepository from "../../repository/accountsRepository";
+import AccountsRepository from "../../repository/accountsRepository";
 import AccountsModel from "../../../domain/accountsModel";
 import usersRepository from "../../../../users/infrastructure/repository/usersRepository";
 import UsersModel from "../../../../users/domain/usersModel";
@@ -23,7 +23,7 @@ describe("Update Account by id test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await accountsRepository.delete({ name: "[accounts::updateById] name", });
+    await AccountsRepository.delete({ name: "[accounts::updateById] name", });
     await usersRepository.delete({ name: "[accounts::updateById] name", });
     token = await signup({
       name: "[accounts::updateById] name",
@@ -60,7 +60,7 @@ describe("Update Account by id test suit", () => {
       done();
     });
 
-    test("It shouldn\"t update an Account. There is not an attribute.", async (done) => {
+    test("It should update an Account.", async (done) => {
       const res = await requester
       .put(`/accounts/${account.id}`)
       .set("Authorization", `Bearer ${token}`)

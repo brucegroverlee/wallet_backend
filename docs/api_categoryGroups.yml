@@ -11,22 +11,14 @@ tags:
   - name: Private
     description: Bearer Authentication required
 paths:
-  /accounts:
+  /category-groups:
     get:
       tags:
         - Private
-      summary: Get the filtered list of accounts
-      description: Get the filtered list of accounts
+      summary: Get the filtered list of categoryGroups
+      description: Get the filtered list of categoryGroups
       security:
       - bearerAuth: []
-      parameters:
-        - name: attribute
-          in: query
-          description: Use any attribute of the object to filter the query
-          required: false
-          schema:
-            type: string
-          example: /accounts?attribute=value
       responses:
         '202':
           description: Acepted
@@ -35,17 +27,15 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Account'
+                  $ref: '#/components/schemas/CategoryGroup'
         '401':
           description: Unauthorized.
-        '406':
-          description: Not Acceptable. There is an attribute invalid.
 
     post:
       tags:
         - Private
-      summary: Create a new account
-      description: Create a new account
+      summary: Create a new categoryGroup
+      description: Create a new categoryGroup
       security:
       - bearerAuth: []
       requestBody:
@@ -54,31 +44,31 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountPostRequest'
+              $ref: '#/components/schemas/CategoryGroupPostRequest'
       responses:
         '201':
           description: Created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                $ref: '#/components/schemas/CategoryGroup'
         '401':
           description: Unauthorized.
         '406':
           description: Not Acceptable. There is an attribute invalid.
 
-  /accounts/{accountId}:
+  /category-groups/{categoryGroupId}:
     get:
       tags:
         - Private
-      summary: Get an account
-      description: Get an account
+      summary: Get an categoryGroup
+      description: Get an categoryGroup
       security:
       - bearerAuth: []
       parameters:
-        - name: accountId
+        - name: categoryGroupId
           in: path
-          description: account's id.
+          description: categoryGroup's id.
           required: true
           schema:
             type: string
@@ -89,7 +79,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                $ref: '#/components/schemas/CategoryGroup'
         '401':
           description: Unauthorized.
         '404':
@@ -98,14 +88,14 @@ paths:
     put:
       tags:
         - Private
-      summary: Update an account
-      description: Update an account
+      summary: Update an categoryGroup
+      description: Update an categoryGroup
       security:
       - bearerAuth: []
       parameters:
-        - name: accountId
+        - name: categoryGroupId
           in: path
-          description: account's id.
+          description: categoryGroup's id.
           required: true
           schema:
             type: string
@@ -116,14 +106,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AccountPostRequest'
+              $ref: '#/components/schemas/CategoryGroupPostRequest'
       responses:
         '202':
           description: Accepted.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Account'
+                $ref: '#/components/schemas/CategoryGroup'
         '401':
           description: Unauthorized.
         '404':
@@ -134,14 +124,14 @@ paths:
     delete:
       tags:
         - Private
-      summary: Delete an account
-      description: Delete an account
+      summary: Delete an categoryGroup
+      description: Delete an categoryGroup
       security:
       - bearerAuth: []
       parameters:
-        - name: accountId
+        - name: categoryGroupId
           in: path
-          description: account's id.
+          description: categoryGroup's id.
           required: true
           schema:
             type: string
@@ -162,11 +152,11 @@ components:
       bearerFormat: JWT 
       
   schemas:
-    Account:
+    CategoryGroup:
       properties:
         object:
           type: string
-          example: account 
+          example: categoryGroup 
         id:
           type: string
           example: bJnb8fWsdWAkh2978kdG
@@ -175,25 +165,19 @@ components:
           example: bJnb8fWsdWAkh2978kdG
         name:
           type: string
-          example: Savings
-        total:
-          type: number
-          example: 1200.50
-        currency:
+          example: Home
+        description:
           type: string
-          example: usd
+          example: Home's spendings
 
-    AccountPostRequest:
+    CategoryGroupPostRequest:
       properties:
         name:
           type: string
-          example: Savings
-        total:
-          type: number
-          example: 1200.50
-        currency:
+          example: Home
+        description:
           type: string
-          example: usd
+          example: Home's spendings
 
 servers:
   - url: 'http://localhost:3000'

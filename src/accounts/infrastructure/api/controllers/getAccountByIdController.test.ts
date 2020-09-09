@@ -7,7 +7,7 @@ dotenv.config({
 import chai from "chai";
 import chaiHttp from "chai-http";
 import server from "../../../../index";
-import accountsRepository from "../../repository/accountsRepository";
+import AccountsRepository from "../../repository/accountsRepository";
 import AccountsModel from "../../../domain/accountsModel";
 import usersRepository from "../../../../users/infrastructure/repository/usersRepository";
 import UsersModel from "../../../../users/domain/usersModel";
@@ -23,7 +23,7 @@ describe("Get Account by id test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await accountsRepository.delete({ name: "[accounts::getById] name", });
+    await AccountsRepository.delete({ name: "[accounts::getById] name", });
     await usersRepository.delete({ name: "[accounts::getById] name", });
     token = await signup({
       name: "[accounts::getById] name",
