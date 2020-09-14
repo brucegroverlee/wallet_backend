@@ -35,6 +35,9 @@ app.use(accountsRouter);
 import categoryGroupsRouter from "./categoryGroups/infrastructure/api/router";
 app.use(categoryGroupsRouter);
 
+import categoriesRouter from "./categories/infrastructure/api/router";
+app.use(categoriesRouter);
+
 app.use((request, response) => {
   response.status(404);
   response.end();

@@ -1,17 +1,17 @@
 import { Request, Response } from "express";
 import IAuthenticateRequest from "../../../../shared/infrastructure/api/controllers/IAuthenticateRequest";
-import CategoryGroupsInterface from "../../../domain/categoryGroupsInterface";
-import getCategoryGroups from "../../../application/getCategoryGroups";
+import CategoriesInterface from "../../../domain/categoriesInterface";
+import getCategories from "../../../application/getCategories";
 
 /**
  * This controller doesn't allow filter the query
  */
-export default function getCategoryGroupsController(request: Request, response: Response) {
+export default function getCategoriesController(request: Request, response: Response) {
   const { user } = request as IAuthenticateRequest;
-  getCategoryGroups({ query: {}, user })
-  .then((categoryGroups: CategoryGroupsInterface[]) => {
+  getCategories({ query: request.query, user })
+  .then((categories: CategoriesInterface[]) => {
     response.status(202);
-    response.send(categoryGroups);
+    response.send(categories);
   })
   .catch((error: any) => {
     /* tslint:disable:no-console */

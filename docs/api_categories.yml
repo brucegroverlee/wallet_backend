@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  description: Wallet APIv1
+  version: "1.0.0-oas3"
+  title: Wallet APIv1 Reference
+  contact:
+    email: brucegrover.lee@gmail.com
+tags:
+  - name: Public
+    description: Public access
+  - name: Private
+    description: Bearer Authentication required
+paths:
+  /categories:
+    get:
+      tags:
+        - Private
+      summary: Get the filtered list of categories
+      description: Get the filtered list of categories
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: attribute
+          in: query
+          description: Use any attribute of the object to filter the query
+          required: false
+          schema:
+            type: string
+          example: /categories?attribute=value
+      responses:
+        '202':
+          description: Acepted
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized.
+        '406':
+          description: Not Acceptable. There is an attribute invalid.
+
+    post:
+      tags:
+        - Private
+      summary: Create a new category
+      description: Create a new category
+      security:
+      - bearerAuth: []
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryPostRequest'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized.
+        '406':
+          description: Not Acceptable. There is an attribute invalid.
+
+  /categories/{categoryId}:
+    get:
+      tags:
+        - Private
+      summary: Get an category
+      description: Get an category
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: category's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      responses:
+        '202':
+          description: Acepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.
+
+    put:
+      tags:
+        - Private
+      summary: Update an category
+      description: Update an category
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: category's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryPostRequest'
+      responses:
+        '202':
+          description: Accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.
+        '406':
+          description: Not Acceptable. There is an attribute invalid.
+
+    delete:
+      tags:
+        - Private
+      summary: Delete an category
+      description: Delete an category
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: category's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
+      
+  schemas:
+    Category:
+      properties:
+        object:
+          type: string
+          example: category 
+        id:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        userId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        categoryGroupId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        name:
+          type: string
+          example: Home
+        description:
+          type: string
+          example: Home's spendings
+        isRecurrent:
+          type: boolean
+          example: false
+        budget:
+          type: number
+          example: 800.00
+        currency:
+          type: string
+          example: usd
+
+    CategoryPostRequest:
+      properties:
+        categoryGroupId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        name:
+          type: string
+          example: Home
+        description:
+          type: string
+          example: Home's spendings
+        isRecurrent:
+          type: boolean
+          example: false
+        budget:
+          type: number
+          example: 800.00
+        currency:
+          type: string
+          example: usd
+
+servers:
+  - url: 'http://localhost:3000'

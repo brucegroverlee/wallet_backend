@@ -1,16 +1,16 @@
 import { Request, Response } from "express";
 import IAuthenticateRequest from "../../../../shared/infrastructure/api/controllers/IAuthenticateRequest";
-import getCategoryGroupById from '../../../application/getCategoryGroupById';
-import CategoryGroupsInterface from "../../../domain/categoryGroupsInterface";
+import getCategoryById from '../../../application/getCategoryById';
+import CategoriesInterface from "../../../domain/categoriesInterface";
 
-export default function getCategoryGroupByIdController(request: Request, response: Response) {
+export default function getCategoryByIdController(request: Request, response: Response) {
   const { user } = request as IAuthenticateRequest;
-  const { categoryGroupId } = request.params;
-  getCategoryGroupById({ categoryGroupId, user })
-  .then((categoryGroup: CategoryGroupsInterface) => {
-    if (categoryGroup !== null) {
+  const { categoryId } = request.params;
+  getCategoryById({ categoryId, user })
+  .then((category: CategoriesInterface) => {
+    if (category !== null) {
       response.status(202);
-      response.send(categoryGroup);
+      response.send(category);
     } else {
       response.status(404);
       response.end();
