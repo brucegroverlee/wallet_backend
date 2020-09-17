@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.6.0...v1.7.0) (2020-09-17)
+
+
+### Features
+
+* **transactions:** [23] add crud transactions ([cd41cec](https://github.com/brucegroverlee/wallet_backend/commit/cd41cec8edcb1be9925714f45b4fe744b9b049a0))
+
 ## [1.6.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.5.0...v1.6.0) (2020-09-14)
 
 
