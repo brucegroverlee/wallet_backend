@@ -38,6 +38,9 @@ app.use(categoryGroupsRouter);
 import categoriesRouter from "./categories/infrastructure/api/router";
 app.use(categoriesRouter);
 
+import transactionsRouter from "./transactions/infrastructure/api/router";
+app.use(transactionsRouter);
+
 app.use((request, response) => {
   response.status(404);
   response.end();
