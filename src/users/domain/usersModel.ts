@@ -1,15 +1,7 @@
-import dotenv from "dotenv";
-import path from "path";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
+import { JWT_EXPIRES_IN, JWT_SECRET } from "../../config/constants";
 import UsersRepository from "../infrastructure/repository/usersRepository";
-
-dotenv.config({
-  path: path.resolve(process.cwd(), "env", `${process.env.NODE_ENV}.env`),
-});
-
-const JWT_SECRET = process.env.JWT_SECRET;
-const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 class UsersModel extends UsersRepository {
   public name: string;
