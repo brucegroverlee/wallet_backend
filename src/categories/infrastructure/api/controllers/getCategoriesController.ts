@@ -1,17 +1,15 @@
 import { Request, Response } from "express";
 import IAuthenticateRequest from "../../../../shared/infrastructure/api/controllers/IAuthenticateRequest";
-import CategoriesInterface from "../../../domain/categoriesInterface";
-import getCategories from "../../../application/getCategories";
+import { parseRequestQueryAndPagination } from "../../../../shared/infrastructure/api/utils/parseRequestQueryAndPagination";
+import getCategories, { IGetCategoriesResult } from "../../../application/getCategories";
 
-/**
- * This controller doesn't allow filter the query
- */
 export default function getCategoriesController(request: Request, response: Response) {
   const { user } = request as IAuthenticateRequest;
-  getCategories({ query: request.query, user })
-  .then((categories: CategoriesInterface[]) => {
+  const { query, page, perPage } = parseRequestQueryAndPagination(request.query);
+  getCategories({ query, page, perPage, user })
+  .then((result: IGetCategoriesResult) => {
     response.status(202);
-    response.send(categories);
+    response.send(result);
   })
   .catch((error: any) => {
     /* tslint:disable:no-console */

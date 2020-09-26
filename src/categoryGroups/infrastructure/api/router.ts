@@ -6,6 +6,7 @@ import validateBodyParams from "../../../shared/infrastructure/api/middlewares/v
 import validateQueryParams from "../../../shared/infrastructure/api/middlewares/validateQueryParams";
 
 import createCategoryGroupBodySchema from "./middlewares/createCategoryGroupBodySchema";
+import getListCategoryGroupsQuerySchema from "./middlewares/getListCategoryGroupsQuerySchema";
 import updateCategoryGroupBodySchema from "./middlewares/updateCategoryGroupBodySchema";
 
 import createCategoryGroupController from "./controllers/createCategoryGroupController";
@@ -20,7 +21,11 @@ router.post("/category-groups",
   createCategoryGroupController
 );
 router.get("/category-groups/:categoryGroupId", verifyAuthentication, getCategoryGroupByIdController);
-router.get("/category-groups", verifyAuthentication, getCategoryGroupsController);
+router.get("/category-groups",
+  verifyAuthentication,
+  validateQueryParams(getListCategoryGroupsQuerySchema),
+  getCategoryGroupsController
+);
 router.put("/category-groups/:categoryGroupId",
   verifyAuthentication,
   validateBodyParams(updateCategoryGroupBodySchema),

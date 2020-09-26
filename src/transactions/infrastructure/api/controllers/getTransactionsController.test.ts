@@ -21,8 +21,25 @@ describe("Get a filtered list of Transactions test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await TransactionsRepository.delete({ description: "[transactions::getList] description 1", });
-    await TransactionsRepository.delete({ description: "[transactions::getList] description 2", });
+    await TransactionsRepository.destroy({ where: {
+      description: [
+        "[transactions::getList] description 1",
+        "[transactions::getList] description 2",
+        "[transactions::getList] description 3",
+        "[transactions::getList] description 4",
+        "[transactions::getList] description 5",
+        "[transactions::getList] description 6",
+        "[transactions::getList] description 7",
+        "[transactions::getList] description 8",
+        "[transactions::getList] description 9",
+        "[transactions::getList] description 10",
+        "[transactions::getList] description 11",
+        "[transactions::getList] description 12",
+        "[transactions::getList] description 13",
+        "[transactions::getList] description 14",
+        "[transactions::getList] description 15",
+      ],
+    }, });
     await usersRepository.delete({ name: "[transactions::getList] name", });
     token = await signup({
       name: "[transactions::getList] name",
@@ -30,22 +47,128 @@ describe("Get a filtered list of Transactions test suit", () => {
       password: "password",
     });
     user = await UsersModel.findOne({ where : { name: "[transactions::getList] name" }, });
-    await TransactionsRepository.create({
-      userId: user.id,
-      categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
-      accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
-      description: "[transactions::getList] description 1",
-      total: 150,
-      currency: "usd",
-    });
-    await TransactionsRepository.create({
-      userId: user.id,
-      categoryId: "6af47d90-df35-11ea-8500-597e701b6d42",
-      accountId: "6af47d90-df35-11ea-8500-597e701b6d42",
-      description: "[transactions::getList] description 2",
-      total: 120,
-      currency: "pen",
-    });
+    await TransactionsRepository.bulkCreate([
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 1",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 2",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 3",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 4",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 5",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 6",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 7",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 8",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 9",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 10",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 11",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        description: "[transactions::getList] description 12",
+        total: 150,
+        currency: "usd",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        description: "[transactions::getList] description 13",
+        total: 120,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        description: "[transactions::getList] description 14",
+        total: 120,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        categoryId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        accountId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        description: "[transactions::getList] description 15",
+        total: 120,
+        currency: "pen",
+      },
+    ]);
     done();
   });
 
@@ -59,7 +182,24 @@ describe("Get a filtered list of Transactions test suit", () => {
       .get("/transactions")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(2);
+      expect(res.body.data.length).toEqual(10);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(2);
+      expect(res.body.pagination.total).toEqual(15);
+      done();
+    });
+
+    test("It should get the list of transactions at the page 2 and 5 per pages.", async (done) => {
+      const res = await requester
+      .get("/transactions?page=2&perPage=5")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(202);
+      expect(res.body.data.length).toEqual(5);
+      expect(res.body.pagination.page).toEqual(2);
+      expect(res.body.pagination.perPage).toEqual(5);
+      expect(res.body.pagination.pages).toEqual(3);
+      expect(res.body.pagination.total).toEqual(15);
       done();
     });
 
@@ -68,7 +208,11 @@ describe("Get a filtered list of Transactions test suit", () => {
       .get("/transactions?accountId=6af47d90-df35-11ea-8500-597e701b6d41")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(1);
+      expect(res.body.data.length).toEqual(10);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(2);
+      expect(res.body.pagination.total).toEqual(12);
       done();
     });
 
@@ -77,7 +221,11 @@ describe("Get a filtered list of Transactions test suit", () => {
       .get("/transactions?accountId=6af47d90-df35-11ea-8500-597e701b6d43")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(0);
+      expect(res.body.data.length).toEqual(0);
+      expect(res.body.pagination.page).toEqual(0);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(0);
+      expect(res.body.pagination.total).toEqual(0);
       done();
     });
 

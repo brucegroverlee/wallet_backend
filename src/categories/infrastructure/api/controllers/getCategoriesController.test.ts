@@ -21,8 +21,25 @@ describe("Get a filtered list of Categories test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await CategoriesRepository.delete({ name: "[categories::getList] name 1", });
-    await CategoriesRepository.delete({ name: "[categories::getList] name 2", });
+    await CategoriesRepository.destroy({ where: {
+      name: [
+        "[categories::getList] name 1",
+        "[categories::getList] name 2",
+        "[categories::getList] name 3",
+        "[categories::getList] name 4",
+        "[categories::getList] name 5",
+        "[categories::getList] name 6",
+        "[categories::getList] name 7",
+        "[categories::getList] name 8",
+        "[categories::getList] name 9",
+        "[categories::getList] name 10",
+        "[categories::getList] name 11",
+        "[categories::getList] name 12",
+        "[categories::getList] name 13",
+        "[categories::getList] name 14",
+        "[categories::getList] name 15",
+      ],
+    }, });
     await usersRepository.delete({ name: "[categories::getList] name", });
     token = await signup({
       name: "[categories::getList] name",
@@ -30,24 +47,143 @@ describe("Get a filtered list of Categories test suit", () => {
       password: "password",
     });
     user = await UsersModel.findOne({ where : { name: "[categories::getList] name" }, });
-    await CategoriesRepository.create({
-      userId: user.id,
-      name: "[categories::getList] name 1",
-      description: "description",
-      categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
-      isRecurrent: false,
-      budget: 500,
-      currency: "usd",
-    });
-    await CategoriesRepository.create({
-      userId: user.id,
-      name: "[categories::getList] name 2",
-      description: "description",
-      categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d42",
-      isRecurrent: false,
-      budget: 1000,
-      currency: "pen",
-    });
+    await CategoriesRepository.bulkCreate([
+      {
+        userId: user.id,
+        name: "[categories::getList] name 1",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 2",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 3",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 4",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 5",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 6",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 7",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 8",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 9",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 10",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 11",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 12",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d41",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 13",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 14",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+      {
+        userId: user.id,
+        name: "[categories::getList] name 15",
+        description: "description",
+        categoryGroupId: "6af47d90-df35-11ea-8500-597e701b6d42",
+        isRecurrent: false,
+        budget: 1000,
+        currency: "pen",
+      },
+    ]);
     done();
   });
 
@@ -61,7 +197,24 @@ describe("Get a filtered list of Categories test suit", () => {
       .get("/categories")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(2);
+      expect(res.body.data.length).toEqual(10);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(2);
+      expect(res.body.pagination.total).toEqual(15);
+      done();
+    });
+
+    test("It should get the filtered list of categories at the page 2 and 5 per pages.", async (done) => {
+      const res = await requester
+      .get("/categories?page=2&perPage=5")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(202);
+      expect(res.body.data.length).toEqual(5);
+      expect(res.body.pagination.page).toEqual(2);
+      expect(res.body.pagination.perPage).toEqual(5);
+      expect(res.body.pagination.pages).toEqual(3);
+      expect(res.body.pagination.total).toEqual(15);
       done();
     });
 
@@ -70,7 +223,11 @@ describe("Get a filtered list of Categories test suit", () => {
       .get("/categories?categoryGroupId=6af47d90-df35-11ea-8500-597e701b6d41")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(1);
+      expect(res.body.data.length).toEqual(10);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(2);
+      expect(res.body.pagination.total).toEqual(12);
       done();
     });
 
@@ -79,7 +236,11 @@ describe("Get a filtered list of Categories test suit", () => {
       .get("/categories?categoryGroupId=6af47d90-df35-11ea-8500-597e701b6d43")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(0);
+      expect(res.body.data.length).toEqual(0);
+      expect(res.body.pagination.page).toEqual(0);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(0);
+      expect(res.body.pagination.total).toEqual(0);
       done();
     });
 

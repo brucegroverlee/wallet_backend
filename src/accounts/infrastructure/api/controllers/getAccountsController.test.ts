@@ -21,8 +21,25 @@ describe("Get a filtered list of Accounts test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await AccountsRepository.delete({ name: "[accounts::getList] name 1", });
-    await AccountsRepository.delete({ name: "[accounts::getList] name 2", });
+    await AccountsRepository.destroy({ where: {
+      name: [
+        "[accounts::getList] name 1",
+        "[accounts::getList] name 2",
+        "[accounts::getList] name 3",
+        "[accounts::getList] name 4",
+        "[accounts::getList] name 5",
+        "[accounts::getList] name 6",
+        "[accounts::getList] name 7",
+        "[accounts::getList] name 8",
+        "[accounts::getList] name 9",
+        "[accounts::getList] name 10",
+        "[accounts::getList] name 11",
+        "[accounts::getList] name 12",
+        "[accounts::getList] name 13",
+        "[accounts::getList] name 14",
+        "[accounts::getList] name 15",
+      ],
+    }, });
     await usersRepository.delete({ name: "[accounts::getList] name", });
     token = await signup({
       name: "[accounts::getList] name",
@@ -30,18 +47,23 @@ describe("Get a filtered list of Accounts test suit", () => {
       password: "password",
     });
     user = await UsersModel.findOne({ where : { name: "[accounts::getList] name" }, });
-    await AccountsRepository.create({
-      userId: user.id,
-      name: "[accounts::getList] name 1",
-      total: 0.0,
-      currency: "usd",
-    });
-    await AccountsRepository.create({
-      userId: user.id,
-      name: "[accounts::getList] name 2",
-      total: 0.0,
-      currency: "pen",
-    });
+    await AccountsRepository.bulkCreate([
+      { userId: user.id, name: "[accounts::getList] name 1", total: 0.0, currency: "usd", },
+      { userId: user.id, name: "[accounts::getList] name 2", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 3", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 4", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 5", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 6", total: 0.0, currency: "usd", },
+      { userId: user.id, name: "[accounts::getList] name 7", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 8", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 9", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 10", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 11", total: 0.0, currency: "usd", },
+      { userId: user.id, name: "[accounts::getList] name 12", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 13", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 14", total: 0.0, currency: "pen", },
+      { userId: user.id, name: "[accounts::getList] name 15", total: 0.0, currency: "pen", },
+    ]);
     done();
   });
 
@@ -55,7 +77,24 @@ describe("Get a filtered list of Accounts test suit", () => {
       .get("/accounts")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(2);
+      expect(res.body.data.length).toEqual(10);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(2);
+      expect(res.body.pagination.total).toEqual(15);
+      done();
+    });
+
+    test("It should get the list of accounts at the page 2 and 5 per pages.", async (done) => {
+      const res = await requester
+      .get("/accounts?page=2&perPage=5")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(202);
+      expect(res.body.data.length).toEqual(5);
+      expect(res.body.pagination.page).toEqual(2);
+      expect(res.body.pagination.perPage).toEqual(5);
+      expect(res.body.pagination.pages).toEqual(3);
+      expect(res.body.pagination.total).toEqual(15);
       done();
     });
 
@@ -64,7 +103,11 @@ describe("Get a filtered list of Accounts test suit", () => {
       .get("/accounts?currency=usd")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(1);
+      expect(res.body.data.length).toEqual(3);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(1);
+      expect(res.body.pagination.total).toEqual(3);
       done();
     });
 
@@ -73,7 +116,11 @@ describe("Get a filtered list of Accounts test suit", () => {
       .get("/accounts?currency=arg")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(202);
-      expect(res.body.length).toEqual(0);
+      expect(res.body.data.length).toEqual(0);
+      expect(res.body.pagination.page).toEqual(0);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(0);
+      expect(res.body.pagination.total).toEqual(0);
       done();
     });
 

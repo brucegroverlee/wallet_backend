@@ -1,9 +1,16 @@
 import { Request, Response } from "express";
 import Joi from "joi";
-import validateParams from "./validateParams";
 
 export default function validateBodyParams(schema: Joi.ObjectSchema) {
   return (request: Request, response: Response, next: () => void) => {
-    validateParams(schema, request.body, response, next);
+    const { error, value } = schema.validate(request.body);
+    if (error) {
+      response.status(406).json({
+        message: error.message,
+      });
+    } else {
+      request.body = value;
+      next();
+    }
   }
 }

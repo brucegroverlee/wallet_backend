@@ -27,15 +27,34 @@ paths:
           schema:
             type: string
           example: /accounts?attribute=value
+        - name: page
+          in: query
+          description: Get the specific page. Default value is 1.
+          required: false
+          schema:
+            type: string
+          example: /accounts?page=5
+        - name: perPage
+          in: query
+          description: The number of items per page. Default value is 10.
+          required: false
+          schema:
+            type: string
+          example: /accounts?perPage=15
       responses:
         '202':
           description: Acepted
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Account'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Account'
+                  pagination:
+                    $ref: '#/components/schemas/Pagination'
         '401':
           description: Unauthorized.
         '406':
@@ -194,6 +213,21 @@ components:
         currency:
           type: string
           example: usd
+    
+    Pagination:
+      properties:
+        page:
+          type: number
+          example: 1
+        perPage:
+          type: number
+          example: 5
+        pages:
+          type: number
+          example: 24
+        total:
+          type: number
+          example: 134
 
 servers:
   - url: 'http://localhost:3000'
