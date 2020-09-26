@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.1](https://github.com/brucegroverlee/wallet_backend/compare/v1.8.0...v1.8.1) (2020-09-26)
+
+
+### Code Refactoring
+
+* **config:** [32] add config directory ([56252f8](https://github.com/brucegroverlee/wallet_backend/commit/56252f86c397c67c29059118256067d88f0fe3a2))
+
 ## [1.8.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.7.0...v1.8.0) (2020-09-26)
 
 
