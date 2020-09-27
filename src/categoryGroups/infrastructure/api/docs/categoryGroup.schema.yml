@@ -11,6 +11,9 @@ components:
         userId:
           type: string
           example: bJnb8fWsdWAkh2978kdG
+        type:
+          type: string
+          example: income
         name:
           type: string
           example: Home
@@ -20,6 +23,9 @@ components:
 
     CategoryGroupPostRequest:
       properties:
+        type:
+          type: string
+          example: income
         name:
           type: string
           example: Home

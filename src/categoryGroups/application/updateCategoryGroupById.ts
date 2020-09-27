@@ -3,6 +3,7 @@ import CategoryGroupsInterface from "../domain/categoryGroupsInterface";
 import UserModel from '../../users/domain/usersModel';
 
 interface IData {
+  type?: string;
   name?: string;
   description?: string;
 }

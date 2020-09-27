@@ -33,6 +33,7 @@ describe("Delete CategoryGroup by id test suit", () => {
     user = await UsersModel.findOne({ where : { name: "[categoryGroups::deleteById] name" }, });
     categoryGroup = await CategoryGroupsModel.create({
       userId: user.id,
+      type: "income",
       name: "[categoryGroups::deleteById] name",
       description: "description",
     });

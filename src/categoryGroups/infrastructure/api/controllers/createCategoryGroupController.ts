@@ -5,8 +5,8 @@ import CategoryGroupsInterface from "../../../domain/categoryGroupsInterface";
 
 export default function createCategoryGroupController(request: Request, response: Response) {
   const { user } = request as IAuthenticateRequest;
-  const { name, description, } = request.body;
-  createCategoryGroup({ name, description, user, })
+  const { type, name, description, } = request.body;
+  createCategoryGroup({ type, name, description, user, })
   .then((createCategory: CategoryGroupsInterface) => {
     response.status(201);
     response.send(createCategory);

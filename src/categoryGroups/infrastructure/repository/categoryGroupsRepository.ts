@@ -25,6 +25,10 @@ CategoryGroupsRepository.init({
     type: Sequelize.UUID,
     allowNull: false,
   },
+  type: {
+    type: Sequelize.STRING,
+    defaultValue: "expenses",
+  },
   name: {
     type: Sequelize.STRING,
     allowNull: false,

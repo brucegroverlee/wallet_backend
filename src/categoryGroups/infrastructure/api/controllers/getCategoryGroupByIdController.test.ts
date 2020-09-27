@@ -33,6 +33,7 @@ describe("Get CategoryGroups by id test suit", () => {
     user = await UsersModel.findOne({ where : { name: "[categoryGroups::getById] name" }, });
     categoryGroup = await CategoryGroupsModel.create({
       userId: user.id,
+      type: "income",
       name: "[categoryGroups::getById] name",
       description: "description",
     });

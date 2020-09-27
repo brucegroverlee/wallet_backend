@@ -48,21 +48,21 @@ describe("Get a filtered list of CategoryGroups test suit", () => {
     });
     user = await UsersModel.findOne({ where : { name: "[categoryGroups::getList] name" }, });
     await CategoryGroupsRepository.bulkCreate([
-      { userId: user.id, name: "[categoryGroups::getList] name 1", description: "description 1", },
-      { userId: user.id, name: "[categoryGroups::getList] name 2", description: "description 2", },
-      { userId: user.id, name: "[categoryGroups::getList] name 3", description: "description 3", },
-      { userId: user.id, name: "[categoryGroups::getList] name 4", description: "description 4", },
-      { userId: user.id, name: "[categoryGroups::getList] name 5", description: "description 5", },
-      { userId: user.id, name: "[categoryGroups::getList] name 6", description: "description 6", },
-      { userId: user.id, name: "[categoryGroups::getList] name 7", description: "description 7", },
-      { userId: user.id, name: "[categoryGroups::getList] name 8", description: "description 8", },
-      { userId: user.id, name: "[categoryGroups::getList] name 9", description: "description 9", },
-      { userId: user.id, name: "[categoryGroups::getList] name 10", description: "description 10", },
-      { userId: user.id, name: "[categoryGroups::getList] name 11", description: "description 11", },
-      { userId: user.id, name: "[categoryGroups::getList] name 12", description: "description 12", },
-      { userId: user.id, name: "[categoryGroups::getList] name 13", description: "description 13", },
-      { userId: user.id, name: "[categoryGroups::getList] name 14", description: "description 14", },
-      { userId: user.id, name: "[categoryGroups::getList] name 15", description: "description 15", },
+      { userId: user.id, type: "income", name: "[categoryGroups::getList] name 1", description: "description 1", },
+      { userId: user.id, type: "income", name: "[categoryGroups::getList] name 2", description: "description 2", },
+      { userId: user.id, type: "income", name: "[categoryGroups::getList] name 3", description: "description 3", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 4", description: "description 4", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 5", description: "description 5", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 6", description: "description 6", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 7", description: "description 7", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 8", description: "description 8", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 9", description: "description 9", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 10", description: "description 10", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 11", description: "description 11", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 12", description: "description 12", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 13", description: "description 13", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 14", description: "description 14", },
+      { userId: user.id, type: "expenses", name: "[categoryGroups::getList] name 15", description: "description 15", },
     ]);
     done();
   });
@@ -98,7 +98,20 @@ describe("Get a filtered list of CategoryGroups test suit", () => {
       done();
     });
 
-    test("It shouldn\"t get an account. There is not a token.", async (done) => {
+    test("It should get the filtered list of categoryGroups.", async (done) => {
+      const res = await requester
+      .get("/category-groups?type=expenses")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(202);
+      expect(res.body.data.length).toEqual(10);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(2);
+      expect(res.body.pagination.total).toEqual(12);
+      done();
+    });
+
+    test("It shouldn\"t get a categoryGroups. There is not a token.", async (done) => {
       const res = await requester
       .get("/category-groups")
       .set("Authorization", "Bearer");
@@ -106,10 +119,26 @@ describe("Get a filtered list of CategoryGroups test suit", () => {
       done();
     });
 
-    test("It shouldn\"t get an account. There is not a header.", async (done) => {
+    test("It shouldn\"t get a categoryGroups. There is not a header.", async (done) => {
       const res = await requester
       .get("/category-groups");
       expect(res.status).toEqual(401);
+      done();
+    });
+
+    test("It shouldn\"t get the filtered list of categoryGroups. The attribute is invalid", async (done) => {
+      const res = await requester
+      .get("/category-groups?currencies=usd")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(406);
+      done();
+    });
+
+    test("It shouldn\"t get the filtered list of categoryGroups. The attribute's value is invalid", async (done) => {
+      const res = await requester
+      .get("/category-groups?type=debt")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(406);
       done();
     });
   });

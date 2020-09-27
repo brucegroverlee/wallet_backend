@@ -39,6 +39,7 @@ describe("Create CategoryGroup test suit", () => {
       .post("/category-groups")
       .set("Authorization", `Bearer ${token}`)
       .send({
+        type: "income",
         name: "[categoryGroups::create] name",
         description: "description",
       });
@@ -52,6 +53,7 @@ describe("Create CategoryGroup test suit", () => {
       .post("/category-groups")
       .set("Authorization", `Bearer`)
       .send({
+        type: "income",
         name: "[categoryGroups::create] name",
         description: "description",
       });
@@ -63,6 +65,7 @@ describe("Create CategoryGroup test suit", () => {
       const res = await requester
       .post("/category-groups")
       .send({
+        type: "income",
         name: "[categoryGroups::create] name",
         description: "description",
       });
@@ -75,6 +78,7 @@ describe("Create CategoryGroup test suit", () => {
       .post("/category-groups")
       .set("Authorization", `Bearer ${token}`)
       .send({
+        type: "income",
         name: "[categoryGroups::create] name",
       });
       expect(res.status).toEqual(406);

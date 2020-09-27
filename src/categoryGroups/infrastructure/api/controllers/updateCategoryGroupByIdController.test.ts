@@ -33,6 +33,7 @@ describe("Update CategoryGroup by id test suit", () => {
     user = await UsersModel.findOne({ where : { name: "[categoryGroups::updateById] name" }, });
     categoryGroup = await CategoryGroupsModel.create({
       userId: user.id,
+      type: "income",
       name: "[categoryGroups::updateById] name",
       description: "description",
     });

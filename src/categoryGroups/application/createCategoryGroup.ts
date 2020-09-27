@@ -3,6 +3,7 @@ import CategoryGroupsInterface from "../domain/categoryGroupsInterface";
 import UserModel from '../../users/domain/usersModel';
 
 interface ICreateCategoryGroupPayload {
+  type: string;
   name: string;
   description: string;
   user: UserModel;
@@ -10,9 +11,10 @@ interface ICreateCategoryGroupPayload {
 
 async function createCategoryGroup(payload: ICreateCategoryGroupPayload): Promise<CategoryGroupsInterface> {
   try {
-    const { name, description, user } = payload;
+    const { type, name, description, user } = payload;
     const categoryGroup = await CategoryGroupsModel.create({
       userId: user.id,
+      type,
       name,
       description,
     });

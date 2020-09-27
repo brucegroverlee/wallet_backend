@@ -3,6 +3,7 @@ import CategoryGroupsRepository from "../infrastructure/repository/categoryGroup
 class CategoryGroupsModel extends CategoryGroupsRepository {
   public id: string;
   public userId: string;
+  public type: string;
   public name: string;
   public description: string;
 }

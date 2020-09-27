@@ -1,6 +1,8 @@
 import Joi from "joi";
 
 const schema = Joi.object({
+  type: Joi.string()
+    .valid('income','expenses'),
   page: Joi.number()
     .integer()
     .min(1)
