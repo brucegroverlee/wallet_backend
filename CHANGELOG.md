@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/brucegroverlee/wallet_backend/compare/v1.8.3...v1.9.0) (2020-09-27)
+
+
+### Features
+
+* **transactions:** [34] add range time ([311ef10](https://github.com/brucegroverlee/wallet_backend/commit/311ef103c287d4f4423ad7eafe517290ab38c572))
+
 ### [1.8.3](https://github.com/brucegroverlee/wallet_backend/compare/v1.8.2...v1.8.3) (2020-09-27)
 
 
