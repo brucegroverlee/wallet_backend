@@ -1,14 +1,17 @@
-import TransactionsModel from '../domain/transactionsModel';
+import TransactionsModel from "../domain/transactionsModel";
 import TransactionsInterface from "../domain/transactionsInterface";
-import UserModel from '../../users/domain/usersModel';
+import UserModel from "../../users/domain/usersModel";
 import { PaginationInterface } from "../../shared/domain/paginationInterface";
 import { getPagination } from "../../shared/application/utils/getPagination";
 import { getOffsetAndLimit } from "../../shared/application/utils/getOffsetAndLimit";
+import { addTimeRangeQuery } from "../../shared/application/utils/addTimeRangeQuery";
 
 interface IGetTransactionsPayload {
   query: any;
   page: number;
   perPage: number;
+  since?: string;
+  until?: string;
   user: UserModel;
 }
 
@@ -19,11 +22,12 @@ export interface IGetTransactionsResult {
 
 async function getTransactions(payload: IGetTransactionsPayload): Promise<IGetTransactionsResult> {
   try {
-    const query = {
+    let query = {
       userId: payload.user.id,
       ...payload.query,
     };
     const { offset, limit } = getOffsetAndLimit(payload.page, payload.perPage);
+    query = addTimeRangeQuery(query, "createdAt", payload.since, payload.until);
     const result = await TransactionsModel.findAndCountAll({
       where: query,
       offset,

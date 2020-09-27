@@ -6,6 +6,7 @@ interface TransactionsInterface {
   description: string;
   total: number;
   currency: string;
+  createdAt: string;
 }
 
 export default TransactionsInterface;

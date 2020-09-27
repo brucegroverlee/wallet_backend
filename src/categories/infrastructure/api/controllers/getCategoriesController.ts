@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import IAuthenticateRequest from "../../../../shared/infrastructure/api/controllers/IAuthenticateRequest";
-import { parseRequestQueryAndPagination } from "../../../../shared/infrastructure/api/utils/parseRequestQueryAndPagination";
+import { parseRequestQueryParams } from "../../../../shared/infrastructure/api/utils/parseRequestQueryParams";
 import getCategories, { IGetCategoriesResult } from "../../../application/getCategories";
 
 export default function getCategoriesController(request: Request, response: Response) {
   const { user } = request as IAuthenticateRequest;
-  const { query, page, perPage } = parseRequestQueryAndPagination(request.query);
+  const { query, page, perPage } = parseRequestQueryParams(request.query);
   getCategories({ query, page, perPage, user })
   .then((result: IGetCategoriesResult) => {
     response.status(202);

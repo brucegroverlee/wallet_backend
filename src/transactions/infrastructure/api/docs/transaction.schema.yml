@@ -26,6 +26,9 @@ components:
         currency:
           type: string
           example: usd
+        createdAt:
+          type: string
+          example: 2020-01-30
 
     TransactionPostRequest:
       properties:

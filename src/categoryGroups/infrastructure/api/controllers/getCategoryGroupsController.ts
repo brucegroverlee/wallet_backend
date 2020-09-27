@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import IAuthenticateRequest from "../../../../shared/infrastructure/api/controllers/IAuthenticateRequest";
-import { parseRequestQueryAndPagination } from "../../../../shared/infrastructure/api/utils/parseRequestQueryAndPagination";
+import { parseRequestQueryParams } from "../../../../shared/infrastructure/api/utils/parseRequestQueryParams";
 import getCategoryGroups, { IGetCategoryGroupsResult } from "../../../application/getCategoryGroups";
 
 /**
@@ -8,7 +8,7 @@ import getCategoryGroups, { IGetCategoryGroupsResult } from "../../../applicatio
  */
 export default function getCategoryGroupsController(request: Request, response: Response) {
   const { user } = request as IAuthenticateRequest;
-  const { query, page, perPage } = parseRequestQueryAndPagination(request.query);
+  const { query, page, perPage } = parseRequestQueryParams(request.query);
   getCategoryGroups({ query, page, perPage, user })
   .then((result: IGetCategoryGroupsResult) => {
     response.status(202);

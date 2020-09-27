@@ -8,6 +8,7 @@ class TransactionsModel extends TransactionsRepository {
   public description: string;
   public total: number;
   public currency: string;
+  public createdAt: string;
 }
 
 export default TransactionsModel;

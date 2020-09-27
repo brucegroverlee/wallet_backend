@@ -8,6 +8,7 @@ interface IData {
   description?: string;
   total?: number;
   currency?: string;
+  createdAt?: string;
 }
 
 interface IUpdateTransactionByIdPayload {

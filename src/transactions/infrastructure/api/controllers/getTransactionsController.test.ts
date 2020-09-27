@@ -169,6 +169,17 @@ describe("Get a filtered list of Transactions test suit", () => {
         currency: "pen",
       },
     ]);
+    await TransactionsRepository.update({ createdAt: '2020-02-25' }, {
+      where: {
+        description: [
+          "[transactions::getList] description 10",
+          "[transactions::getList] description 11",
+          "[transactions::getList] description 12",
+          "[transactions::getList] description 13",
+          "[transactions::getList] description 14",
+        ],
+      },
+    });
     done();
   });
 
@@ -247,6 +258,40 @@ describe("Get a filtered list of Transactions test suit", () => {
     test("It shouldn\"t get the filtered list of transactions. The attribute is invalid", async (done) => {
       const res = await requester
       .get("/transactions?currencies=usd")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(406);
+      done();
+    });
+
+    test("It should get the filtered list of transactions by range of time.", async (done) => {
+      const res = await requester
+      .get("/transactions?since=2020-01-30&until=2020-06-30")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(202);
+      expect(res.body.data.length).toEqual(5);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(1);
+      expect(res.body.pagination.total).toEqual(5);
+      done();
+    });
+
+    test("It should get the filtered list of transactions by range of time and attribute.", async (done) => {
+      const res = await requester
+      .get("/transactions?accountId=6af47d90-df35-11ea-8500-597e701b6d41&since=2020-01-30&until=2020-06-30")
+      .set("Authorization", `Bearer ${token}`);
+      expect(res.status).toEqual(202);
+      expect(res.body.data.length).toEqual(3);
+      expect(res.body.pagination.page).toEqual(1);
+      expect(res.body.pagination.perPage).toEqual(10);
+      expect(res.body.pagination.pages).toEqual(1);
+      expect(res.body.pagination.total).toEqual(3);
+      done();
+    });
+
+    test("It shouldn\"t get the filtered list of transactions. The attribute since and until is invalid", async (done) => {
+      const res = await requester
+      .get("/transactions?since=2020-01-30")
       .set("Authorization", `Bearer ${token}`);
       expect(res.status).toEqual(406);
       done();

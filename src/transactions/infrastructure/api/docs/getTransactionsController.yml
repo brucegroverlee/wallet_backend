@@ -21,14 +21,28 @@ paths:
           required: false
           schema:
             type: string
-          example: /accounts?page=5
+          example: /transactions?page=5
         - name: perPage
           in: query
           description: The number of items per page. Default value is 10.
           required: false
           schema:
             type: string
-          example: /accounts?perPage=15
+          example: /transactions?perPage=15
+        - name: since
+          in: query
+          description: Lower bound of the time range to consider. The params since and until should be used together.
+          required: false
+          schema:
+            type: string
+          example: /transactions?since=2020-01-30&until=2020-06-15
+        - name: until
+          in: query
+          description: Upper bound of the time range to consider. The params since and until should be used together.
+          required: false
+          schema:
+            type: string
+          example: /transactions?since=2020-01-30&until=2020-06-15
       responses:
         '202':
           description: Acepted

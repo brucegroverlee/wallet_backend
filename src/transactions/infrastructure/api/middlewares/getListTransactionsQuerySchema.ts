@@ -23,6 +23,8 @@ const schema = Joi.object({
     .min(1)
     .max(100)
     .default(10),
-});
+  since: Joi.date().iso(),
+  until: Joi.date().iso(),
+}).with('since', 'until');
 
 export default schema;
