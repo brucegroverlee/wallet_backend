@@ -2,7 +2,7 @@ paths:
   /categories:
     get:
       tags:
-        - Private
+        - Categories
       summary: Get the filtered list of categories
       description: Get the filtered list of categories
       security:

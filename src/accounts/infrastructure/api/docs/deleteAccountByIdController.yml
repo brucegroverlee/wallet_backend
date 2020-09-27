@@ -2,7 +2,7 @@ paths:
   /accounts/{accountId}:
     delete:
       tags:
-        - Private
+        - Accounts
       summary: Delete an account
       description: Delete an account
       security:

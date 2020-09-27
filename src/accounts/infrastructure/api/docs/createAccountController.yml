@@ -2,7 +2,7 @@ paths:
   /accounts:
     post:
       tags:
-        - Private
+        - Accounts
       summary: Create a new account
       description: Create a new account
       security:

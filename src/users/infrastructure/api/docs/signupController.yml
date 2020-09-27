@@ -2,7 +2,7 @@ paths:
   /signup:
     post:
       tags: 
-        - Public
+        - Users
       summary: Create a new user
       operationId: signup
       description: Create a new user.

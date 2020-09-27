@@ -2,7 +2,7 @@ paths:
   /transactions/{transactionId}:
     put:
       tags:
-        - Private
+        - Transactions
       summary: Update an transaction
       description: Update an transaction
       security:

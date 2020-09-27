@@ -2,7 +2,7 @@ paths:
   /me:
     post:
       tags: 
-        - Private
+        - Users
       summary: Get the user information
       operationId: me
       description: Get the user information.

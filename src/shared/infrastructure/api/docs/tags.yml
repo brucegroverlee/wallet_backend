@@ -1,5 +1,0 @@
-tags:
-  - name: Public
-    description: Public access
-  - name: Private
-    description: Bearer Authentication required

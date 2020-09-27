@@ -2,7 +2,7 @@ paths:
   /category-groups/{categoryGroupId}:
     get:
       tags:
-        - Private
+        - CategoryGroups
       summary: Get an categoryGroup
       description: Get an categoryGroup
       security:

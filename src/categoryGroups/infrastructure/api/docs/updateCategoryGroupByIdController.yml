@@ -2,7 +2,7 @@ paths:
   /category-groups/{categoryGroupId}:
     put:
       tags:
-        - Private
+        - CategoryGroups
       summary: Update an categoryGroup
       description: Update an categoryGroup
       security:

@@ -2,7 +2,7 @@ paths:
   /transactions/{transactionId}:
     delete:
       tags:
-        - Private
+        - Transactions
       summary: Delete an transaction
       description: Delete an transaction
       security:

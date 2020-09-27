@@ -2,7 +2,7 @@ paths:
   /category-groups:
     post:
       tags:
-        - Private
+        - CategoryGroups
       summary: Create a new categoryGroup
       description: Create a new categoryGroup
       security:

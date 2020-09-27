@@ -2,7 +2,7 @@ paths:
   /categories:
     post:
       tags:
-        - Private
+        - Categories
       summary: Create a new category
       description: Create a new category
       security:

@@ -2,7 +2,7 @@ paths:
   /login:
     post:
       tags: 
-        - Public
+        - Users
       summary: Get the auth
       operationId: login
       description: Get the auth token.

@@ -2,7 +2,7 @@ paths:
   /category-groups/{categoryGroupId}:
     delete:
       tags:
-        - Private
+        - CategoryGroups
       summary: Delete an categoryGroup
       description: Delete an categoryGroup
       security:

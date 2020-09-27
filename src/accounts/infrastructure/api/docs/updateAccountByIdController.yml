@@ -2,7 +2,7 @@ paths:
   /accounts/{accountId}:
     put:
       tags:
-        - Private
+        - Accounts
       summary: Update an account
       description: Update an account
       security:
