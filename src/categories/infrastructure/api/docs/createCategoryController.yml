@@ -1,0 +1,27 @@
+paths:
+  /categories:
+    post:
+      tags:
+        - Private
+      summary: Create a new category
+      description: Create a new category
+      security:
+      - bearerAuth: []
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryPostRequest'
+      responses:
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized.
+        '406':
+          description: Not Acceptable. There is an attribute invalid.

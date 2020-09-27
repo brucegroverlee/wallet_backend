@@ -1,0 +1,46 @@
+components:
+  schemas:
+    Transaction:
+      properties:
+        object:
+          type: string
+          example: transaction 
+        id:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        userId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        categoryId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        accountId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        description:
+          type: string
+          example: Home's spendings
+        total:
+          type: number
+          example: 800.00
+        currency:
+          type: string
+          example: usd
+
+    TransactionPostRequest:
+      properties:
+        categoryId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        accountId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        description:
+          type: string
+          example: Home's spendings
+        total:
+          type: number
+          example: 800.00
+        currency:
+          type: string
+          example: usd

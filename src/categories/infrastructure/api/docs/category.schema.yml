@@ -1,0 +1,52 @@
+components:
+  schemas:
+    Category:
+      properties:
+        object:
+          type: string
+          example: category 
+        id:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        userId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        categoryGroupId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        name:
+          type: string
+          example: Home
+        description:
+          type: string
+          example: Home's spendings
+        isRecurrent:
+          type: boolean
+          example: false
+        budget:
+          type: number
+          example: 800.00
+        currency:
+          type: string
+          example: usd
+
+    CategoryPostRequest:
+      properties:
+        categoryGroupId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        name:
+          type: string
+          example: Home
+        description:
+          type: string
+          example: Home's spendings
+        isRecurrent:
+          type: boolean
+          example: false
+        budget:
+          type: number
+          example: 800.00
+        currency:
+          type: string
+          example: usd

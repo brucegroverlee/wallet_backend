@@ -1,0 +1,53 @@
+components:
+  schemas:
+    LoginRequest:
+      properties:
+        email:
+          type: string
+          example: bruce@gmail.com
+        password:
+          type: string
+          example: 12345678
+  
+    SignupRequest:
+      properties:
+        email:
+          type: string
+          example: bruce@gmail.com
+        password:
+          type: string
+          example: 12345678
+        name:
+          type: string
+          example: bruce
+
+    SessionResponse:
+      properties:
+        token:
+          type: string
+          description: It is a JWT.
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+
+    MeResponse:
+      properties:
+        token:
+          type: string
+          example: bJnb8fWsdWAkh2978kdGbJnb8fWsdWAkh2978kdGbJnb8fWsdWAkh2978kdG 
+        user:
+          type: object
+          $ref: '#/components/schemas/User' 
+
+    User:
+      properties:
+        object:
+          type: string
+          example: user 
+        id:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        email:
+          type: string
+          example: bruce@gmail.com
+        name:
+          type: string
+          example: bruce

@@ -1,0 +1,28 @@
+paths:
+  /category-groups/{categoryGroupId}:
+    get:
+      tags:
+        - Private
+      summary: Get an categoryGroup
+      description: Get an categoryGroup
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryGroupId
+          in: path
+          description: categoryGroup's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      responses:
+        '202':
+          description: Acepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryGroup'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.

@@ -1,17 +1,13 @@
-/* tslint:disable:ordered-imports */
-import "module-alias/register"; // tslint:disable-line
-/* tslint:enable:ordered-imports */
-
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import bodyParser from "body-parser";
+import swaggerJsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+import { swaggerConfig } from "./config/swagger.config";
+import { APP_VERSION, APP_PORT } from "./config/constants";
 import database from "./shared/infrastructure/repository/database";
-
-import _package from "../package.json";
-const PORT = process.env.PORT || 3000;
-const VERSION = _package.version; // require('@root/package.json').version;
 
 // Create a new express application instance
 const app: express.Application = express();
@@ -25,6 +21,18 @@ if (process.env.NODE_ENV !== "test" && process.env.NODE_ENV !== "test.local") {
   // use morgan to log at command line
   app.use(morgan("combined")); // "combined" outputs the Apache style LOGs
 }
+
+const specs = swaggerJsdoc(swaggerConfig);
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(specs, {
+    explorer: true,
+    swaggerOptions: {
+      validatorUrl : null,
+    },
+  })
+);
 
 import usersRouter from "./users/infrastructure/api/router";
 app.use(usersRouter);
@@ -51,12 +59,12 @@ app.use((request, response) => {
 // ********************************************
 database.sync().then(() => {
   if (process.env.NODE_ENV !== "test" && process.env.NODE_ENV !== "test.local") {
-    app.listen(PORT, () => {
+    app.listen(APP_PORT, () => {
       /* tslint:disable:no-console */
       console.log("NODE_ENV: ", process.env.NODE_ENV);
-      console.log(`Backend v${VERSION}`);
-      console.log("The RESTful Api is running at http://localhost:%d/", PORT);
-      // console.log(`The Webhook Server is running at http://localhost:${PORT}/webhooks`);
+      console.log(`Backend v${APP_VERSION}`);
+      console.log("The RESTful Api is running at http://localhost:%d/", APP_PORT);
+      // console.log(`The Webhook Server is running at http://localhost:${APP_PORT}/webhooks`);
       /* tslint:enable:no-console */
     });
   }

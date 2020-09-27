@@ -1,0 +1,27 @@
+paths:
+  /signup:
+    post:
+      tags: 
+        - Public
+      summary: Create a new user
+      operationId: signup
+      description: Create a new user.
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SignupRequest'
+      responses:
+        '201':
+          description: Created. Return the token auth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+                  
+        '406':
+          description: Not Acceptable. There is an attribute invalid.
+        '409':
+          description: Conflict. There is another user with the email.

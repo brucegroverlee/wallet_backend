@@ -1,0 +1,24 @@
+paths:
+  /transactions/{transactionId}:
+    delete:
+      tags:
+        - Private
+      summary: Delete an transaction
+      description: Delete an transaction
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: transaction's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.

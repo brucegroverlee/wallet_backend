@@ -1,0 +1,37 @@
+paths:
+  /categories/{categoryId}:
+    put:
+      tags:
+        - Private
+      summary: Update an category
+      description: Update an category
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryId
+          in: path
+          description: category's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryPostRequest'
+      responses:
+        '202':
+          description: Accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Category'
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.
+        '406':
+          description: Not Acceptable. There is an attribute invalid.

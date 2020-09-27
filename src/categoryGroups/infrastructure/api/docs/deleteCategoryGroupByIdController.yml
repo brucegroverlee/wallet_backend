@@ -1,0 +1,24 @@
+paths:
+  /category-groups/{categoryGroupId}:
+    delete:
+      tags:
+        - Private
+      summary: Delete an categoryGroup
+      description: Delete an categoryGroup
+      security:
+      - bearerAuth: []
+      parameters:
+        - name: categoryGroupId
+          in: path
+          description: categoryGroup's id.
+          required: true
+          schema:
+            type: string
+          example: aHNvfoF8r4fDkffd9VTdkfnieb
+      responses:
+        '204':
+          description: No Content
+        '401':
+          description: Unauthorized.
+        '404':
+          description: Not Found.

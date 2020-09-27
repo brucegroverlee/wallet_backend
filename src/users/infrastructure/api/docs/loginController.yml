@@ -1,0 +1,27 @@
+paths:
+  /login:
+    post:
+      tags: 
+        - Public
+      summary: Get the auth
+      operationId: login
+      description: Get the auth token.
+      requestBody:
+        description: Credential object
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '202':
+          description: Accepted. Return the token auth.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionResponse'
+                  
+        '400':
+          description: Bad Request
+        '401':
+          description: Unauthorized.

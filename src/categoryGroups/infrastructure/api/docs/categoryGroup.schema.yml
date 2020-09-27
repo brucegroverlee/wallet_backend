@@ -1,0 +1,28 @@
+components:
+  schemas:
+    CategoryGroup:
+      properties:
+        object:
+          type: string
+          example: categoryGroup 
+        id:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        userId:
+          type: string
+          example: bJnb8fWsdWAkh2978kdG
+        name:
+          type: string
+          example: Home
+        description:
+          type: string
+          example: Home's spendings
+
+    CategoryGroupPostRequest:
+      properties:
+        name:
+          type: string
+          example: Home
+        description:
+          type: string
+          example: Home's spendings

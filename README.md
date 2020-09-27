@@ -6,6 +6,7 @@
 - TypeScript
 - MySQL / Sequelize
 - Jest
+- Swagger
 
 ## References
 - [Clean Architecture Guide](https://proandroiddev.com/clean-architecture-data-flow-dependency-rule-615ffdd79e29)
