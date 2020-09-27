@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.8.3](https://github.com/brucegroverlee/wallet_backend/compare/v1.8.2...v1.8.3) (2020-09-27)
+
+
+### Bug Fixes
+
+* **categorygroups:** [31] add type attribute ([c28600e](https://github.com/brucegroverlee/wallet_backend/commit/c28600e34ff6e3551deac00b03706d042c6cb3ae))
+
 ### [1.8.2](https://github.com/brucegroverlee/wallet_backend/compare/v1.8.1...v1.8.2) (2020-09-27)
 
 
