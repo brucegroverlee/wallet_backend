@@ -8,27 +8,58 @@ paths:
       security:
       - bearerAuth: []
       parameters:
-        - name: attribute
+        - name: name
           in: query
-          description: Use any attribute of the object to filter the query
+          description: Ex.
+                       ```
+                       /accounts?name=savings
+                       ```
           required: false
           schema:
             type: string
-          example: /accounts?attribute=value
+          example: Savings
+        - name: total
+          in: query
+          description: Ex.
+                       ```
+                       /accounts?total=100
+                       ```
+          required: false
+          schema:
+            type: number
+          example: 100
+        - name: currency
+          in: query
+          description: Ex.
+                       ```
+                       /accounts?currency=usd
+                       ```
+          required: false
+          schema:
+            type: string
+          example: usd
         - name: page
           in: query
           description: Get the specific page. Default value is 1.
+                       Ex.
+                       ```
+                       /accounts?page=5
+                       ```
           required: false
           schema:
-            type: string
-          example: /accounts?page=5
+            type: number
+          example: 5
         - name: perPage
           in: query
           description: The number of items per page. Default value is 10.
+                       Ex.
+                       ```
+                       /accounts?perPage=15
+                       ```
           required: false
           schema:
-            type: string
-          example: /accounts?perPage=15
+            type: number
+          example: 15
       responses:
         '202':
           description: Acepted

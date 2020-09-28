@@ -8,41 +8,82 @@ paths:
       security:
       - bearerAuth: []
       parameters:
-        - name: attribute
+        - name: categoryId
           in: query
-          description: Use any attribute of the object to filter the query
+          description: Ex.
+                       ```
+                       /transactions?categoryId=182d7cac-0114-11eb-acbd-77ea15032b35
+                       ```
           required: false
           schema:
             type: string
-          example: /transactions?attribute=value
+          example: "182d7cac-0114-11eb-acbd-77ea15032b35"
+        - name: accountId
+          in: query
+          description: Ex.
+                       ```
+                       /transactions?accountId=182d7cac-0114-11eb-acbd-77ea15032b35
+                       ```
+          required: false
+          schema:
+            type: string
+          example: "182d7cac-0114-11eb-acbd-77ea15032b35"
+        - name: currency
+          in: query
+          description: Ex.
+                       ```
+                       /transactions?currency=usd
+                       ```
+          required: false
+          schema:
+            type: string
+          example: usd
         - name: page
           in: query
           description: Get the specific page. Default value is 1.
+                       Ex.
+                       ```
+                       /transactions?page=2&perPage=8
+                       ```
           required: false
           schema:
-            type: string
-          example: /transactions?page=5
+            type: number
+          example: 5
         - name: perPage
           in: query
           description: The number of items per page. Default value is 10.
+                       Ex.
+                       ```
+                       /transactions?page=2&perPage=8
+                       ```
           required: false
           schema:
-            type: string
-          example: /transactions?perPage=15
+            type: number
+          example: 15
         - name: since
           in: query
-          description: Lower bound of the time range to consider. The params since and until should be used together.
+          description: Lower bound of the time range to consider. 
+                       The params since and until should be used together.
+                       Ex.
+                       ```
+                       /transactions?since=2020-01-30&until=2020-06-15
+                       ```
           required: false
           schema:
             type: string
-          example: /transactions?since=2020-01-30&until=2020-06-15
+          example: "2020-01-30"
         - name: until
           in: query
-          description: Upper bound of the time range to consider. The params since and until should be used together.
+          description: Upper bound of the time range to consider.
+                       The params since and until should be used together.
+                       Ex.
+                       ```
+                       /transactions?since=2020-01-30&until=2020-06-15
+                       ```
           required: false
           schema:
             type: string
-          example: /transactions?since=2020-01-30&until=2020-06-15
+          example: "2020-06-15"
       responses:
         '202':
           description: Acepted

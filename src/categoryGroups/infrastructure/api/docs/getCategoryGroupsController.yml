@@ -8,27 +8,39 @@ paths:
       security:
       - bearerAuth: []
       parameters:
-        - name: attribute
+        - name: type
           in: query
-          description: Use any attribute of the object to filter the query
+          description: Could be ``expenses`` or ``income``.
+                       Ex.
+                       ```
+                       /category-groups?type=income
+                       ```
           required: false
           schema:
             type: string
-          example: /accounts?attribute=value
+          example: income
         - name: page
           in: query
           description: Get the specific page. Default value is 1.
+                       Ex.
+                       ```
+                       /category-groups?page=5
+                       ```
           required: false
           schema:
-            type: string
-          example: /accounts?page=5
+            type: number
+          example: 5
         - name: perPage
           in: query
           description: The number of items per page. Default value is 10.
+                       Ex.
+                       ```
+                       /category-groups?perPage=15
+                       ```
           required: false
           schema:
-            type: string
-          example: /accounts?perPage=15
+            type: number
+          example: 15
       responses:
         '202':
           description: Acepted
