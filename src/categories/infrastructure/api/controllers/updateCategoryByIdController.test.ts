@@ -23,7 +23,7 @@ describe("Update Category by id test suit", () => {
 
   beforeAll( async done => {
     requester = chai.request(server).keepOpen();
-    await CategoriesRepository.delete({ name: "[categories::updateById] name", });
+    await CategoriesRepository.delete({ name: "[categories::updateById] name 2", });
     await usersRepository.delete({ name: "[categories::updateById] name", });
     token = await signup({
       name: "[categories::updateById] name",

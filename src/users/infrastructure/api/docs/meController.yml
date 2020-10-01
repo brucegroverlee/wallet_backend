@@ -1,6 +1,6 @@
 paths:
   /me:
-    post:
+    get:
       tags: 
         - Users
       summary: Get the user information
