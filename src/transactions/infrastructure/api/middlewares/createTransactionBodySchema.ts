@@ -14,7 +14,6 @@ const schema = Joi.object({
     .max(250)
     .required(),
   total: Joi.number()
-    .min(0)
     .required(),
   currency: Joi.string()
     .length(3)

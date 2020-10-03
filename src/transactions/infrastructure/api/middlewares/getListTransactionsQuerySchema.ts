@@ -10,8 +10,7 @@ const schema = Joi.object({
   description: Joi.string()
     .min(0)
     .max(250),
-  total: Joi.number()
-    .min(0),
+  total: Joi.number(),
   currency: Joi.string()
     .length(3),
   page: Joi.number()
